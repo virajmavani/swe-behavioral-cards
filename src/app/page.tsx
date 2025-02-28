@@ -48,6 +48,10 @@ export default function Home() {
         <p className="text-blue-100 max-w-3xl text-lg">
           Prepare your behavioral interview stories using the STAR (Situation, Task, Action, Result) or CURL (Challenge, Understanding, Response, Lesson) formats. Create cards for each competency and organize your stories.
         </p>
+        <p className="text-blue-100 max-w-3xl text-lg">
+          A good source for the questions can be found <a href="https://www.techinterviewhandbook.org/behavioral-interview-questions/"
+            className="text-yellow-300">here</a>.
+        </p>
         <div className="mt-6 px-4 py-3 bg-white/10 rounded-md text-blue-50 text-sm backdrop-blur-sm border border-white/20">
           <p className="font-semibold flex items-center">
             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

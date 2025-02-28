@@ -55,7 +55,7 @@ export default function Home() {
             </svg>
             Pro Tip:
           </p>
-          <p>Your stories are automatically saved to your browser's local storage. You can change this in settings.</p>
+          <p>Your stories are automatically saved to your browser&apos;s local storage. You can change this in settings.</p>
         </div>
       </header>
 

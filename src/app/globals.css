@@ -19,3 +19,40 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@layer utilities {
+  .animate-slideDown {
+    overflow: hidden;
+    animation: slideDown 300ms ease-out;
+  }
+  
+  .animate-slideUp {
+    overflow: hidden;
+    animation: slideUp 300ms ease-out;
+  }
+  
+  @keyframes slideDown {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  
+  @keyframes slideUp {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  textarea, input {
+    font-size: 16px; /* Prevents zoom on focus in iOS */
+  }
+}

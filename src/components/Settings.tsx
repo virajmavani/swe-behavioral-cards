@@ -11,7 +11,7 @@ interface SettingsProps {
 }
 
 export default function Settings({ open, onOpenChange }: SettingsProps) {
-  const { state, updateSettings, resetData } = useApp();
+  const { state, updateSettings, resetData, resetToDefaultCompetencies } = useApp();
   // Track client-side rendering to avoid hydration mismatch
   const [isClient, setIsClient] = useState(false);
   
@@ -65,19 +65,31 @@ export default function Settings({ open, onOpenChange }: SettingsProps) {
             
             <div>
               <h3 className="font-semibold text-gray-800 mb-2">Data Management</h3>
-              <button
-                onClick={handleResetData}
-                className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
-              >
-                Reset All Data
-              </button>
+              <div className="flex flex-col gap-2">
+                <button
+                  onClick={handleResetData}
+                  className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+                >
+                  Reset All Data
+                </button>
+                <button
+                  onClick={() => {
+                    if (confirm('Are you sure you want to reset to default competencies? This will delete any custom competencies and reset the defaults.')) {
+                      resetToDefaultCompetencies();
+                    }
+                  }}
+                  className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                >
+                  Reset to Default Competencies
+                </button>
+              </div>
             </div>
 
             <div>
               <h3 className="font-semibold text-gray-800 mb-2">Competency Management</h3>
               <div className="text-sm text-gray-700 bg-gray-50 p-3 rounded-md space-y-2">
-                <p>You can add, edit, or delete custom competencies using the main interface.</p>
-                <p>Default competencies can be edited but not deleted.</p>
+                <p>You can now add, edit, or delete any competencies using the main interface.</p>
+                <p>Use the "Reset to Default Competencies" button to restore the original set.</p>
               </div>
             </div>
             

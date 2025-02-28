@@ -4,7 +4,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import { AppState, Card, Competency, CardFormat } from '@/types';
 
 // Default competencies
-const defaultCompetencies: Competency[] = [
+export const defaultCompetencies: Competency[] = [
   {
     id: 'leadership',
     name: 'Leadership',
@@ -56,6 +56,7 @@ interface AppContextType {
   deleteCompetency: (id: string) => void;
   updateSettings: (settings: AppState['settings']) => void;
   resetData: () => void;
+  resetToDefaultCompetencies: () => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -182,10 +183,6 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const deleteCompetency = (id: string) => {
-    // Don't allow deletion of default competencies
-    const defaultCompetencyIds = ['leadership', 'teamwork', 'problem-solving', 'communication', 'adaptability'];
-    if (defaultCompetencyIds.includes(id)) return;
-    
     setState((prev) => ({
       ...prev,
       competencies: prev.competencies.filter((comp) => comp.id !== id),
@@ -203,6 +200,13 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     setState(defaultState);
   };
 
+  const resetToDefaultCompetencies = () => {
+    setState(prev => ({
+      ...prev,
+      competencies: defaultCompetencies
+    }));
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -215,6 +219,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
         deleteCompetency,
         updateSettings,
         resetData,
+        resetToDefaultCompetencies,
       }}
     >
       {children}

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
-import { useApp } from '@/context/AppContext';
+import { useApp, defaultCompetencies as defaultCompetencyList } from '@/context/AppContext';
 import { Competency } from '@/types';
 
 interface CompetencyManagerProps {
@@ -72,7 +72,7 @@ export default function CompetencyManager({
         <Dialog.Content className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg p-6 max-w-md w-full shadow-xl border border-gray-200">
           <Dialog.Title className="text-xl font-bold mb-4 text-blue-800 border-b pb-2">
             {editCompetency ? 'Edit Competency' : 'Add New Competency'}
-            {editCompetency && defaultCompetencies.some(id => id === editCompetency.id) && (
+            {editCompetency && isDefaultCompetency(editCompetency) && (
               <span className="ml-2 text-xs font-normal text-blue-600 bg-blue-50 px-2 py-1 rounded-full">
                 Default Competency
               </span>
@@ -86,10 +86,10 @@ export default function CompetencyManager({
           )}
           
           <div className="space-y-4">
-            {editCompetency && defaultCompetencies.some(id => id === editCompetency.id) && (
+            {editCompetency && isDefaultCompetency(editCompetency) && (
               <div className="p-3 bg-blue-50 text-blue-700 rounded-md mb-4 text-sm">
                 <p className="font-medium">This is a default competency</p>
-                <p>You can edit its description but you cannot delete it.</p>
+                <p>You can edit or delete it, but can restore all defaults from Settings.</p>
               </div>
             )}
             
@@ -103,11 +103,7 @@ export default function CompetencyManager({
                 onChange={(e) => setName(e.target.value)}
                 className="w-full px-3 py-2 border text-gray-800 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm"
                 placeholder="e.g., Problem Solving, Leadership"
-                disabled={(editCompetency && defaultCompetencies.some(id => id === editCompetency.id)) || false}
               />
-              {editCompetency && defaultCompetencies.some(id => id === editCompetency.id) && (
-                <p className="text-xs text-gray-500 mt-1">Default competency names cannot be changed</p>
-              )}
             </div>
             
             <div>
@@ -127,7 +123,7 @@ export default function CompetencyManager({
           
           <div className="flex justify-between mt-6">
             <div>
-              {editCompetency && !defaultCompetencies.some(id => id === editCompetency.id) && (
+              {editCompetency && (
                 <button
                   onClick={handleDelete}
                   className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 font-medium transition-colors"
@@ -161,11 +157,7 @@ export default function CompetencyManager({
   );
 }
 
-// Default competencies for reference
-const defaultCompetencies = [
-  'leadership',
-  'teamwork',
-  'problem-solving',
-  'communication',
-  'adaptability',
-];
+// Helper function to check if competency is one of the default ones
+const isDefaultCompetency = (competency: Competency) => {
+  return defaultCompetencyList.some(dc => dc.id === competency.id);
+};

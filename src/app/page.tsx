@@ -22,7 +22,7 @@ export default function Home() {
             <svg className="w-8 h-8 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
             </svg>
-            Behavioral Interview Prep
+            SWE Behavioral Interview Prep
           </h1>
           <button
             onClick={() => setIsSettingsOpen(true)}
@@ -49,7 +49,7 @@ export default function Home() {
           Prepare your behavioral interview stories using the STAR (Situation, Task, Action, Result) or CURL (Challenge, Understanding, Response, Lesson) formats. Create cards for each competency and organize your stories.
         </p>
         <p className="text-blue-100 max-w-3xl text-lg">
-          A good source for the questions can be found <a href="https://www.techinterviewhandbook.org/behavioral-interview-questions/"
+          A good source for interview questions can be found <a href="https://www.techinterviewhandbook.org/behavioral-interview-questions/"
             className="text-yellow-300">here</a>.
         </p>
         <div className="mt-6 px-4 py-3 bg-white/10 rounded-md text-blue-50 text-sm backdrop-blur-sm border border-white/20">
